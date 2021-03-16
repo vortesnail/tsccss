@@ -1,0 +1,27 @@
+{
+  "name": "tsccss",
+  "version": "0.0.1",
+  "description": "Import from [.scss] or [.less] to [.css] after typescript compilation.",
+  "main": "cjs/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "bin": {
+    "tsccss": "cjs/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vortesnail/tsccss.git"
+  },
+  "keywords": [
+    "typescript",
+    "tsc",
+    "scss css",
+    "less css"
+  ],
+  "author": "vortesnail <1091331061@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vortesnail/tsccss/issues"
+  },
+  "homepage": "https://github.com/vortesnail/tsccss#readme"
+}
