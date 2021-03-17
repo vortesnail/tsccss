@@ -8,6 +8,10 @@
   "bin": {
     "tsccss": "cjs/index.js"
   },
+  "scripts": {
+    "clear": "rm -rf ./lib ./cjs ./coverage",
+    "lint": "eslint -c .eslintrc.js --ext .ts,.tsx,.js src"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/vortesnail/tsccss.git"
@@ -23,5 +27,14 @@
   "bugs": {
     "url": "https://github.com/vortesnail/tsccss/issues"
   },
-  "homepage": "https://github.com/vortesnail/tsccss#readme"
+  "homepage": "https://github.com/vortesnail/tsccss#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "prettier": "^2.2.1",
+    "typescript": "^4.2.3"
+  }
 }
