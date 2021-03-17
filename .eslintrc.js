@@ -21,6 +21,7 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   rules: {
     '@typescript-eslint/indent': [2, ERROR],
+    '@typescript-eslint/no-use-before-define': OFF,
 
     'lines-between-class-members': [ERROR, 'always'],
     'linebreak-style': [ERROR, 'unix'],
