@@ -20,6 +20,8 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   rules: {
+    '@typescript-eslint/indent': [2, ERROR],
+
     'lines-between-class-members': [ERROR, 'always'],
     'linebreak-style': [ERROR, 'unix'],
     quotes: [ERROR, 'single'],
@@ -32,5 +34,6 @@ module.exports = {
     'no-use-before-define': OFF,
     'no-restricted-syntax': OFF,
     'no-continue': OFF,
+    indent: OFF,
   },
 };
