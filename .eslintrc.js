@@ -20,8 +20,11 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   rules: {
+    'import/no-extraneous-dependencies': OFF,
+
     '@typescript-eslint/indent': [2, ERROR],
     '@typescript-eslint/no-use-before-define': OFF,
+    '@typescript-eslint/no-param-reassign': OFF,
 
     'lines-between-class-members': [ERROR, 'always'],
     'linebreak-style': [ERROR, 'unix'],
@@ -36,5 +39,6 @@ module.exports = {
     'no-restricted-syntax': OFF,
     'no-continue': OFF,
     indent: OFF,
+    'no-param-reassign': OFF,
   },
 };
