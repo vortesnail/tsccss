@@ -11,7 +11,7 @@
   "scripts": {
     "build:cjs": "tsc -p ./tsconfig.cjs.json",
     "build:esm": "tsc -p ./tsconfig.esm.json",
-    "build": "yarn build:cjs && yarn build:esm",
+    "build": "yarn clear && yarn build:cjs && yarn build:esm",
     "start": "yarn build && node cjs/index.js",
     "clear": "rm -rf ./lib ./cjs ./coverage",
     "lint": "eslint -c .eslintrc.js --ext .ts,.tsx,.js src"
@@ -33,17 +33,18 @@
   },
   "homepage": "https://github.com/vortesnail/tsccss#readme",
   "devDependencies": {
-    "@types/jscodeshift": "^0.11.0",
-    "@types/node": "^14.14.35",
-    "@typescript-eslint/eslint-plugin": "^4.18.0",
-    "@typescript-eslint/parser": "^4.18.0",
-    "eslint": "^7.22.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
-    "prettier": "^2.2.1",
-    "typescript": "^4.2.3"
+    "@types/jscodeshift": "~0.11.0",
+    "@types/node": "~14.14.35",
+    "@typescript-eslint/eslint-plugin": "~4.18.0",
+    "@typescript-eslint/parser": "~4.18.0",
+    "eslint": "~7.22.0",
+    "eslint-config-airbnb-base": "~14.2.1",
+    "eslint-plugin-import": "~2.22.1",
+    "prettier": "~2.2.1",
+    "typescript": "~4.2.3"
   },
   "dependencies": {
-    "jscodeshift": "^0.11.0"
+    "jscodeshift": "~0.11.0",
+    "commander": "~7.1.0"
   }
 }

@@ -19,7 +19,23 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint'],
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.tsx', '.ts', '.js', '.json'],
+      },
+      typescript: {},
+    },
+  },
   rules: {
+    'import/extensions': [
+      ERROR,
+      'ignorePackages',
+      {
+        ts: 'never',
+        js: 'never',
+      },
+    ],
     'import/no-extraneous-dependencies': OFF,
 
     '@typescript-eslint/indent': [2, ERROR],
