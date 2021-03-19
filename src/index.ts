@@ -3,7 +3,7 @@
 import { program } from 'commander';
 import { resolve } from 'path';
 import { sync } from 'globby';
-import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import { transToCSS } from './util';
 
 program.version('0.0.1').option('-o, --out <path>', 'output root path').option('-v, --verbose', 'output logs');
@@ -12,14 +12,14 @@ program.on('--help', () => {
   console.log(`
   You can add the following commands to npm scripts:
  ------------------------------------------------------
-  "compile": "tsccss -s src -o dist"
+  "compile": "tsccss -o dist"
  ------------------------------------------------------
 `);
 });
 
 program.parse(process.argv);
 
-const { out, verbose } = program.opts() as {
+const { out } = program.opts() as {
   out?: string;
   verbose?: boolean;
 };
@@ -28,20 +28,12 @@ if (!out) {
   throw new Error('--out must be specified');
 }
 
-// const verboseLog = (...args: any[]) => {
-//   if (verbose) {
-//     console.log(...args);
-//   }
-// };
-
 const outRoot = resolve(process.cwd(), out);
 
 console.log(`tsccss --out ${outRoot}`);
 
 // Read output files
-const files = sync(`${outRoot}/**/*.{ts,tsx,js,jsx}`, {
-  dot: true,
-}).map((x) => resolve(x));
+const files = sync(`${outRoot}/**/*.{ts,tsx,js,jsx}`, { dot: true }).map((x) => resolve(x));
 
 let changedFileCount = 0;
 let transToCSSCount = 0;

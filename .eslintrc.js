@@ -21,9 +21,7 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   settings: {
     'import/resolver': {
-      node: {
-        extensions: ['.tsx', '.ts', '.js', '.json'],
-      },
+      node: { extensions: ['.tsx', '.ts', '.js', '.json'] },
       typescript: {},
     },
   },
@@ -37,6 +35,7 @@ module.exports = {
       },
     ],
     'import/no-extraneous-dependencies': OFF,
+    'import/prefer-default-export': OFF,
 
     '@typescript-eslint/indent': [2, ERROR],
     '@typescript-eslint/no-use-before-define': OFF,
@@ -60,10 +59,11 @@ module.exports = {
     'object-curly-newline': [
       WARN,
       {
-        ObjectExpression: 'always',
-        ObjectPattern: {
+        ObjectExpression: {
           multiline: true,
+          minProperties: 3,
         },
+        ObjectPattern: { multiline: true },
         ImportDeclaration: 'never',
         ExportDeclaration: {
           multiline: true,
