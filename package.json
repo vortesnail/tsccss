@@ -12,10 +12,9 @@
     "build:cjs": "tsc -p ./tsconfig.cjs.json",
     "build:esm": "tsc -p ./tsconfig.esm.json",
     "build": "yarn clear && yarn build:cjs && yarn build:esm",
-    "start": "yarn build && node cjs/index.js",
-    "clear": "rm -rf ./lib ./cjs ./coverage",
-    "lint": "eslint -c .eslintrc.js --ext .ts,.tsx,.js src",
-    "test": "node cjs/index.js -o dist"
+    "start": "yarn build && node cjs/index.js -h",
+    "clear": "rm -rf ./lib ./cjs",
+    "lint": "eslint -c .eslintrc.js --ext .ts,.tsx,.js src"
   },
   "repository": {
     "type": "git",
