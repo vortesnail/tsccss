@@ -1,61 +1,62 @@
 #! /usr/bin/env node
 
 import { program } from 'commander';
+import { resolve } from 'path';
+import { sync } from 'globby';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { transToCSS } from './util';
 
-program
-  .version('0.0.1')
-  .option('-p, --project <file>', 'path to tsconfig.json')
-  .option('-s, --src <path>', 'source root path')
-  .option('-o, --out <path>', 'output root path')
-  .option('-v, --verbose', 'output logs');
+program.version('0.0.1').option('-o, --out <path>', 'output root path').option('-v, --verbose', 'output logs');
 
 program.on('--help', () => {
   console.log(`
   You can add the following commands to npm scripts:
  ------------------------------------------------------
-  "compile": "tsccss -p tsconfig.json -s src -o dist"
+  "compile": "tsccss -s src -o dist"
  ------------------------------------------------------
 `);
 });
 
 program.parse(process.argv);
 
-// import * as jf from 'jscodeshift';
+const { out, verbose } = program.opts() as {
+  out?: string;
+  verbose?: boolean;
+};
 
-// const str = `
-// import React from 'react';
-// import classNames from './utils/classnames';
-// import sceneJPG from './assets/scene.jpg';
-// import { prefixCls } from './config';
-// import './QierPlayer.scss';
-// import './index.Less';
-// import './style.SCSS';
+if (!out) {
+  throw new Error('--out must be specified');
+}
 
-// function QierPlayer() {
-//   const classes = classNames(\`\${prefixCls}\`, {});
-//   return React.createElement(
-//     'div',
-//     { className: classes },
-//     React.createElement('span', null, 'I am QierPlayer'),
-//     React.createElement('img', { src: sceneJPG, alt: '' }),
-//   );
-// }
-// export default QierPlayer;
-// `;
-
-// const root = jf(str);
-
-// root.find(jf.ImportDeclaration).forEach((path) => {
-//   const value = path.node?.source?.value;
-//   const regex = /(scss|less)('|"|`)?$/i;
-//   if (value && regex.test(value.toString())) {
-//     path.node.source.value = value.toString().replace(regex, (res, $1, $2) => {
-//       console.log(res, $1, $2);
-//       return $2 ? `css${$2}` : 'css';
-//     });
+// const verboseLog = (...args: any[]) => {
+//   if (verbose) {
+//     console.log(...args);
 //   }
-// });
+// };
 
-// console.log(root.toSource());
+const outRoot = resolve(process.cwd(), out);
 
-// export default str;
+console.log(`tsccss --out ${outRoot}`);
+
+// Read output files
+const files = sync(`${outRoot}/**/*.{ts,tsx,js,jsx}`, {
+  dot: true,
+}).map((x) => resolve(x));
+
+let changedFileCount = 0;
+let transToCSSCount = 0;
+const filesLen = files.length;
+
+for (let i = 0; i < filesLen; i += 1) {
+  const file = files[i];
+  const content = readFileSync(file, 'utf-8');
+  const { count: changeCount, content: changeContent } = transToCSS(content);
+  if (changeCount > 0) {
+    changedFileCount += 1;
+    transToCSSCount += changeCount;
+    console.log(`${file}: replaced ${changeCount} style suffixes with css.`);
+    writeFileSync(file, changeContent, 'utf8');
+  }
+}
+
+console.log(`Replaced ${transToCSSCount} styles with suffix css in ${changedFileCount} files`);

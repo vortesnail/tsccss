@@ -56,5 +56,20 @@ module.exports = {
     'no-continue': OFF,
     indent: OFF,
     'no-param-reassign': OFF,
+    'no-unused-vars': WARN,
+    'object-curly-newline': [
+      WARN,
+      {
+        ObjectExpression: 'always',
+        ObjectPattern: {
+          multiline: true,
+        },
+        ImportDeclaration: 'never',
+        ExportDeclaration: {
+          multiline: true,
+          minProperties: 3,
+        },
+      },
+    ],
   },
 };
