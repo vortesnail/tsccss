@@ -2,6 +2,8 @@
 
 As we all know, Typescript compiler does not process `.scss` or `.less` files when compiling `.ts` files, we usually use [node-sass](https://github.com/sass/node-sass#command-line-interface) or [less](http://lesscss.org/usage/#command-line-usage) to process them. But in our compiled `.js` files the style file suffixes are not changed, `tsccss` can help you change them all to `.css` suffixes without worrying about replacing them in other places you don't want to, this tool is based on [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree), not [Regular Expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions).
 
+<div align=center><img src="/screenshot.png"/></div>
+
 ## Getting Started
 
 First, install `tsccss` as `devDependency` using npm or yarn.
