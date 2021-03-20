@@ -30,6 +30,6 @@ yarn add tsccss -D
 
 You need to provide `-o (--out)`, this is the root folder where you need to do the style suffix replacement.
 
-# License
+### License
 
 [MIT](/LICENSE)
