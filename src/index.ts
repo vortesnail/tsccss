@@ -33,7 +33,7 @@ const outRoot = resolve(process.cwd(), out);
 console.log(`tsccss --out ${outRoot}`);
 
 // Read output files
-const files = sync(`${outRoot}/**/!(*.d).{ts,tsx,js,jsx}`, { dot: true }).map((x) => resolve(x));
+const files = sync(`${outRoot}(/|\\)**(/|\\))!(*.d).{ts,tsx,js,jsx}`, { dot: true }).map((x) => resolve(x));
 
 let changedFileCount = 0;
 let transToCSSCount = 0;
