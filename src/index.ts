@@ -3,6 +3,7 @@
 import { program } from 'commander';
 import { resolve } from 'path';
 import { sync } from 'globby';
+import slash from 'slash';
 import { readFileSync, writeFileSync } from 'fs';
 import { transToCSS } from './util';
 
@@ -33,7 +34,8 @@ const outRoot = resolve(process.cwd(), out);
 console.log(`tsccss --out ${outRoot}`);
 
 // Read output files
-const files = sync(`${outRoot}(/|\\)**(/|\\))!(*.d).{ts,tsx,js,jsx}`, { dot: true }).map((x) => resolve(x));
+const findPath = slash(`${outRoot}/**/!(*.d).{ts,tsx,js,jsx}`);
+const files = sync(findPath, { dot: true }).map((x) => resolve(x));
 
 let changedFileCount = 0;
 let transToCSSCount = 0;

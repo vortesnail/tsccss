@@ -1,4 +1,4 @@
-import * as jf from 'jscodeshift';
+import jf from 'jscodeshift';
 
 /**
  * Based on AST, replace the style suffix in the read file content with CSS.
