@@ -1,6 +1,6 @@
 {
   "name": "tsccss",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "description": "Import from [.scss] or [.less] to [.css] after typescript compilation.",
   "main": "cjs/index.js",
   "module": "lib/index.js",

@@ -44,12 +44,15 @@ const filesLen = files.length;
 for (let i = 0; i < filesLen; i += 1) {
   const file = files[i];
   const content = readFileSync(file, 'utf-8');
-  const { count: changeCount, content: changeContent } = transToCSS(content);
-  if (changeCount > 0) {
-    changedFileCount += 1;
-    transToCSSCount += changeCount;
-    console.log(`${file}: replaced ${changeCount} style suffixes with css.`);
-    writeFileSync(file, changeContent, 'utf8');
+  const res = transToCSS(content);
+  if (res) {
+    const { count: changeCount, content: changeContent } = res;
+    if (changeCount > 0) {
+      changedFileCount += 1;
+      transToCSSCount += changeCount;
+      console.log(`${file}: replaced ${changeCount} style suffixes with css.`);
+      writeFileSync(file, changeContent, 'utf8');
+    }
   }
 }
 

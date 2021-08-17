@@ -6,7 +6,12 @@ import jf from 'jscodeshift';
  * @returns Quantity replaced
  */
 function transToCSS(str: string) {
-  const root = jf(str);
+  let root;
+  try {
+    root = jf(str);
+  } catch (error) {
+    return false;
+  }
   let count = 0;
   root.find(jf.ImportDeclaration).forEach((path) => {
     const value = path.node?.source?.value;
